@@ -1,0 +1,17 @@
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\BLL.dll.config
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\BLL.dll
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\BLL.pdb
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\DAL.dll
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\DTO.dll
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\EntityFramework.dll
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\EntityFramework.SqlServer.dll
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\DAL.pdb
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\DAL.dll.config
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\DTO.pdb
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\EntityFramework.xml
+F:\STUDYNET\PBL3_UD1\BLL\bin\Debug\EntityFramework.SqlServer.xml
+F:\STUDYNET\PBL3_UD1\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+F:\STUDYNET\PBL3_UD1\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+F:\STUDYNET\PBL3_UD1\BLL\obj\Debug\BLL.csproj.Up2Date
+F:\STUDYNET\PBL3_UD1\BLL\obj\Debug\BLL.dll
+F:\STUDYNET\PBL3_UD1\BLL\obj\Debug\BLL.pdb

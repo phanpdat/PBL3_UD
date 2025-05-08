@@ -1,0 +1,6 @@
+F:\STUDYNET\PBL3_UD1\DTO\bin\Debug\DTO.dll
+F:\STUDYNET\PBL3_UD1\DTO\bin\Debug\DTO.pdb
+F:\STUDYNET\PBL3_UD1\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+F:\STUDYNET\PBL3_UD1\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+F:\STUDYNET\PBL3_UD1\DTO\obj\Debug\DTO.dll
+F:\STUDYNET\PBL3_UD1\DTO\obj\Debug\DTO.pdb

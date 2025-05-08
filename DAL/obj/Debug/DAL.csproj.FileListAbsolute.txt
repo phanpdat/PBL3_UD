@@ -1,0 +1,12 @@
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\DAL.dll
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\DAL.pdb
+F:\STUDYNET\PBL3_UD1\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+F:\STUDYNET\PBL3_UD1\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+F:\STUDYNET\PBL3_UD1\DAL\obj\Debug\DAL.dll
+F:\STUDYNET\PBL3_UD1\DAL\obj\Debug\DAL.pdb
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\DAL.dll.config
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\EntityFramework.dll
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\EntityFramework.xml
+F:\STUDYNET\PBL3_UD1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+F:\STUDYNET\PBL3_UD1\DAL\obj\Debug\DAL.csproj.Up2Date

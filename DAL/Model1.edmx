@@ -1,0 +1,706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GYM2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="SoT" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="GOITAP">
+          <Key>
+            <PropertyRef Name="GoTapID" />
+          </Key>
+          <Property Name="GoTapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenGoTap" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gia" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ThoiLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="HoaDonID" />
+          </Key>
+          <Property Name="HoaDonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HocVienID" Type="int" />
+          <Property Name="NgayLap" Type="date" />
+          <Property Name="TongTien" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AdminID" Type="int" />
+          <Property Name="SoBuoiHoc" Type="int" />
+          <Property Name="NgayDangKy" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HOCVIEN">
+          <Key>
+            <PropertyRef Name="HocVienID" />
+          </Key>
+          <Property Name="HocVienID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="GoTapID" Type="int" />
+          <Property Name="IsRegistered" Type="bit" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="NgayBatDau" Type="date" />
+          <Property Name="NgayHetHan" Type="date" />
+        </EntityType>
+        <EntityType Name="LICH_HOC">
+          <Key>
+            <PropertyRef Name="LichID" />
+          </Key>
+          <Property Name="LichID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HocVienID" Type="int" />
+          <Property Name="PTID" Type="int" />
+          <Property Name="NgayDangKy" Type="date" />
+          <Property Name="ThuHoc" Type="nvarchar" MaxLength="20" />
+          <Property Name="BuoiHoc" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PT">
+          <Key>
+            <PropertyRef Name="PTID" />
+          </Key>
+          <Property Name="PTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="ThietBiID" />
+          </Key>
+          <Property Name="ThietBiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="SoLuongTot" Type="int" />
+          <Property Name="SoLuongHong" Type="int" />
+        </EntityType>
+        <EntityType Name="THONGKE">
+          <Key>
+            <PropertyRef Name="ThongKeID" />
+          </Key>
+          <Property Name="ThongKeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayThongKe" Type="date" />
+          <Property Name="TongDoanhThu" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HoaDonID" Type="int" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__ADMIN__UserID__47DBAE45">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__AdminID__4BAC3F29">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__HocVienI__4AB81AF0">
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCVIEN">
+              <PropertyRef Name="HocVienID" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="HocVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCVIEN__GoTapID__3F466844">
+          <End Role="GOITAP" Type="Self.GOITAP" Multiplicity="0..1" />
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GOITAP">
+              <PropertyRef Name="GoTapID" />
+            </Principal>
+            <Dependent Role="HOCVIEN">
+              <PropertyRef Name="GoTapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCVIEN__UserID__3E52440B">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="HOCVIEN">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICH_HOC__HocVie__4222D4EF">
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="0..1" />
+          <End Role="LICH_HOC" Type="Self.LICH_HOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCVIEN">
+              <PropertyRef Name="HocVienID" />
+            </Principal>
+            <Dependent Role="LICH_HOC">
+              <PropertyRef Name="HocVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICH_HOC__PTID__4316F928">
+          <End Role="PT" Type="Self.PT" Multiplicity="0..1" />
+          <End Role="LICH_HOC" Type="Self.LICH_HOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PT">
+              <PropertyRef Name="PTID" />
+            </Principal>
+            <Dependent Role="LICH_HOC">
+              <PropertyRef Name="PTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PT__UserID__398D8EEE">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="PT" Type="Self.PT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PT">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__THONGKE__HoaDonI__4E88ABD4">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+          <End Role="THONGKE" Type="Self.THONGKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="HoaDonID" />
+            </Principal>
+            <Dependent Role="THONGKE">
+              <PropertyRef Name="HoaDonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GYM2ModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GOITAP" EntityType="Self.GOITAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOCVIEN" EntityType="Self.HOCVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICH_HOC" EntityType="Self.LICH_HOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PT" EntityType="Self.PT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THIETBI" EntityType="Self.THIETBI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THONGKE" EntityType="Self.THONGKE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ADMIN__UserID__47DBAE45" Association="Self.FK__ADMIN__UserID__47DBAE45">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__AdminID__4BAC3F29" Association="Self.FK__HOADON__AdminID__4BAC3F29">
+            <End Role="ADMIN" EntitySet="ADMIN" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__HocVienI__4AB81AF0" Association="Self.FK__HOADON__HocVienI__4AB81AF0">
+            <End Role="HOCVIEN" EntitySet="HOCVIEN" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCVIEN__GoTapID__3F466844" Association="Self.FK__HOCVIEN__GoTapID__3F466844">
+            <End Role="GOITAP" EntitySet="GOITAP" />
+            <End Role="HOCVIEN" EntitySet="HOCVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCVIEN__UserID__3E52440B" Association="Self.FK__HOCVIEN__UserID__3E52440B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HOCVIEN" EntitySet="HOCVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICH_HOC__HocVie__4222D4EF" Association="Self.FK__LICH_HOC__HocVie__4222D4EF">
+            <End Role="HOCVIEN" EntitySet="HOCVIEN" />
+            <End Role="LICH_HOC" EntitySet="LICH_HOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICH_HOC__PTID__4316F928" Association="Self.FK__LICH_HOC__PTID__4316F928">
+            <End Role="PT" EntitySet="PT" />
+            <End Role="LICH_HOC" EntitySet="LICH_HOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PT__UserID__398D8EEE" Association="Self.FK__PT__UserID__398D8EEE">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PT" EntitySet="PT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__THONGKE__HoaDonI__4E88ABD4" Association="Self.FK__THONGKE__HoaDonI__4E88ABD4">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="THONGKE" EntitySet="THONGKE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GYM2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__ADMIN__UserID__47DBAE45" FromRole="ADMIN" ToRole="USERS" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__AdminID__4BAC3F29" FromRole="ADMIN" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="GOITAP">
+          <Key>
+            <PropertyRef Name="GoTapID" />
+          </Key>
+          <Property Name="GoTapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenGoTap" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ThoiLuong" Type="Int32" />
+          <NavigationProperty Name="HOCVIENs" Relationship="Self.FK__HOCVIEN__GoTapID__3F466844" FromRole="GOITAP" ToRole="HOCVIEN" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="HoaDonID" />
+          </Key>
+          <Property Name="HoaDonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HocVienID" Type="Int32" />
+          <Property Name="NgayLap" Type="DateTime" Precision="0" />
+          <Property Name="TongTien" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AdminID" Type="Int32" />
+          <Property Name="SoBuoiHoc" Type="Int32" />
+          <Property Name="NgayDangKy" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK__HOADON__AdminID__4BAC3F29" FromRole="HOADON" ToRole="ADMIN" />
+          <NavigationProperty Name="HOCVIEN" Relationship="Self.FK__HOADON__HocVienI__4AB81AF0" FromRole="HOADON" ToRole="HOCVIEN" />
+          <NavigationProperty Name="THONGKEs" Relationship="Self.FK__THONGKE__HoaDonI__4E88ABD4" FromRole="HOADON" ToRole="THONGKE" />
+        </EntityType>
+        <EntityType Name="HOCVIEN">
+          <Key>
+            <PropertyRef Name="HocVienID" />
+          </Key>
+          <Property Name="HocVienID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GoTapID" Type="Int32" />
+          <Property Name="IsRegistered" Type="Boolean" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="NgayBatDau" Type="DateTime" Precision="0" />
+          <Property Name="NgayHetHan" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GOITAP" Relationship="Self.FK__HOCVIEN__GoTapID__3F466844" FromRole="HOCVIEN" ToRole="GOITAP" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__HocVienI__4AB81AF0" FromRole="HOCVIEN" ToRole="HOADON" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__HOCVIEN__UserID__3E52440B" FromRole="HOCVIEN" ToRole="USERS" />
+          <NavigationProperty Name="LICH_HOC" Relationship="Self.FK__LICH_HOC__HocVie__4222D4EF" FromRole="HOCVIEN" ToRole="LICH_HOC" />
+        </EntityType>
+        <EntityType Name="LICH_HOC">
+          <Key>
+            <PropertyRef Name="LichID" />
+          </Key>
+          <Property Name="LichID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HocVienID" Type="Int32" />
+          <Property Name="PTID" Type="Int32" />
+          <Property Name="NgayDangKy" Type="DateTime" Precision="0" />
+          <Property Name="ThuHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BuoiHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOCVIEN" Relationship="Self.FK__LICH_HOC__HocVie__4222D4EF" FromRole="LICH_HOC" ToRole="HOCVIEN" />
+          <NavigationProperty Name="PT" Relationship="Self.FK__LICH_HOC__PTID__4316F928" FromRole="LICH_HOC" ToRole="PT" />
+        </EntityType>
+        <EntityType Name="PT">
+          <Key>
+            <PropertyRef Name="PTID" />
+          </Key>
+          <Property Name="PTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LICH_HOC" Relationship="Self.FK__LICH_HOC__PTID__4316F928" FromRole="PT" ToRole="LICH_HOC" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__PT__UserID__398D8EEE" FromRole="PT" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="THIETBI">
+          <Key>
+            <PropertyRef Name="ThietBiID" />
+          </Key>
+          <Property Name="ThietBiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenThietBi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="SoLuongTot" Type="Int32" />
+          <Property Name="SoLuongHong" Type="Int32" />
+        </EntityType>
+        <EntityType Name="THONGKE">
+          <Key>
+            <PropertyRef Name="ThongKeID" />
+          </Key>
+          <Property Name="ThongKeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayThongKe" Type="DateTime" Precision="0" />
+          <Property Name="TongDoanhThu" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HoaDonID" Type="Int32" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK__THONGKE__HoaDonI__4E88ABD4" FromRole="THONGKE" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADMINs" Relationship="Self.FK__ADMIN__UserID__47DBAE45" FromRole="USERS" ToRole="ADMIN" />
+          <NavigationProperty Name="HOCVIENs" Relationship="Self.FK__HOCVIEN__UserID__3E52440B" FromRole="USERS" ToRole="HOCVIEN" />
+          <NavigationProperty Name="PTs" Relationship="Self.FK__PT__UserID__398D8EEE" FromRole="USERS" ToRole="PT" />
+        </EntityType>
+        <Association Name="FK__ADMIN__UserID__47DBAE45">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__AdminID__4BAC3F29">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCVIEN__GoTapID__3F466844">
+          <End Role="GOITAP" Type="Self.GOITAP" Multiplicity="0..1" />
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GOITAP">
+              <PropertyRef Name="GoTapID" />
+            </Principal>
+            <Dependent Role="HOCVIEN">
+              <PropertyRef Name="GoTapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__HocVienI__4AB81AF0">
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCVIEN">
+              <PropertyRef Name="HocVienID" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="HocVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__THONGKE__HoaDonI__4E88ABD4">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+          <End Role="THONGKE" Type="Self.THONGKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="HoaDonID" />
+            </Principal>
+            <Dependent Role="THONGKE">
+              <PropertyRef Name="HoaDonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCVIEN__UserID__3E52440B">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="HOCVIEN">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICH_HOC__HocVie__4222D4EF">
+          <End Role="HOCVIEN" Type="Self.HOCVIEN" Multiplicity="0..1" />
+          <End Role="LICH_HOC" Type="Self.LICH_HOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCVIEN">
+              <PropertyRef Name="HocVienID" />
+            </Principal>
+            <Dependent Role="LICH_HOC">
+              <PropertyRef Name="HocVienID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICH_HOC__PTID__4316F928">
+          <End Role="PT" Type="Self.PT" Multiplicity="0..1" />
+          <End Role="LICH_HOC" Type="Self.LICH_HOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PT">
+              <PropertyRef Name="PTID" />
+            </Principal>
+            <Dependent Role="LICH_HOC">
+              <PropertyRef Name="PTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PT__UserID__398D8EEE">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PT" Type="Self.PT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PT">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GYM2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="GOITAPs" EntityType="Self.GOITAP" />
+          <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+          <EntitySet Name="HOCVIENs" EntityType="Self.HOCVIEN" />
+          <EntitySet Name="LICH_HOC" EntityType="Self.LICH_HOC" />
+          <EntitySet Name="PTs" EntityType="Self.PT" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="THIETBIs" EntityType="Self.THIETBI" />
+          <EntitySet Name="THONGKEs" EntityType="Self.THONGKE" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK__ADMIN__UserID__47DBAE45" Association="Self.FK__ADMIN__UserID__47DBAE45">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="ADMIN" EntitySet="ADMINs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__AdminID__4BAC3F29" Association="Self.FK__HOADON__AdminID__4BAC3F29">
+            <End Role="ADMIN" EntitySet="ADMINs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCVIEN__GoTapID__3F466844" Association="Self.FK__HOCVIEN__GoTapID__3F466844">
+            <End Role="GOITAP" EntitySet="GOITAPs" />
+            <End Role="HOCVIEN" EntitySet="HOCVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__HocVienI__4AB81AF0" Association="Self.FK__HOADON__HocVienI__4AB81AF0">
+            <End Role="HOCVIEN" EntitySet="HOCVIENs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__THONGKE__HoaDonI__4E88ABD4" Association="Self.FK__THONGKE__HoaDonI__4E88ABD4">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="THONGKE" EntitySet="THONGKEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCVIEN__UserID__3E52440B" Association="Self.FK__HOCVIEN__UserID__3E52440B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HOCVIEN" EntitySet="HOCVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICH_HOC__HocVie__4222D4EF" Association="Self.FK__LICH_HOC__HocVie__4222D4EF">
+            <End Role="HOCVIEN" EntitySet="HOCVIENs" />
+            <End Role="LICH_HOC" EntitySet="LICH_HOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICH_HOC__PTID__4316F928" Association="Self.FK__LICH_HOC__PTID__4316F928">
+            <End Role="PT" EntitySet="PTs" />
+            <End Role="LICH_HOC" EntitySet="LICH_HOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PT__UserID__398D8EEE" Association="Self.FK__PT__UserID__398D8EEE">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PT" EntitySet="PTs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GYM2ModelStoreContainer" CdmEntityContainer="GYM2Entities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="GYM2Model.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SoT" ColumnName="SoT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GOITAPs">
+            <EntityTypeMapping TypeName="GYM2Model.GOITAP">
+              <MappingFragment StoreEntitySet="GOITAP">
+                <ScalarProperty Name="GoTapID" ColumnName="GoTapID" />
+                <ScalarProperty Name="TenGoTap" ColumnName="TenGoTap" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="GYM2Model.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="HoaDonID" ColumnName="HoaDonID" />
+                <ScalarProperty Name="HocVienID" ColumnName="HocVienID" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="SoBuoiHoc" ColumnName="SoBuoiHoc" />
+                <ScalarProperty Name="NgayDangKy" ColumnName="NgayDangKy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOCVIENs">
+            <EntityTypeMapping TypeName="GYM2Model.HOCVIEN">
+              <MappingFragment StoreEntitySet="HOCVIEN">
+                <ScalarProperty Name="HocVienID" ColumnName="HocVienID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GoTapID" ColumnName="GoTapID" />
+                <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICH_HOC">
+            <EntityTypeMapping TypeName="GYM2Model.LICH_HOC">
+              <MappingFragment StoreEntitySet="LICH_HOC">
+                <ScalarProperty Name="LichID" ColumnName="LichID" />
+                <ScalarProperty Name="HocVienID" ColumnName="HocVienID" />
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="NgayDangKy" ColumnName="NgayDangKy" />
+                <ScalarProperty Name="ThuHoc" ColumnName="ThuHoc" />
+                <ScalarProperty Name="BuoiHoc" ColumnName="BuoiHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PTs">
+            <EntityTypeMapping TypeName="GYM2Model.PT">
+              <MappingFragment StoreEntitySet="PT">
+                <ScalarProperty Name="PTID" ColumnName="PTID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GYM2Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THIETBIs">
+            <EntityTypeMapping TypeName="GYM2Model.THIETBI">
+              <MappingFragment StoreEntitySet="THIETBI">
+                <ScalarProperty Name="ThietBiID" ColumnName="ThietBiID" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="SoLuongTot" ColumnName="SoLuongTot" />
+                <ScalarProperty Name="SoLuongHong" ColumnName="SoLuongHong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THONGKEs">
+            <EntityTypeMapping TypeName="GYM2Model.THONGKE">
+              <MappingFragment StoreEntitySet="THONGKE">
+                <ScalarProperty Name="ThongKeID" ColumnName="ThongKeID" />
+                <ScalarProperty Name="NgayThongKe" ColumnName="NgayThongKe" />
+                <ScalarProperty Name="TongDoanhThu" ColumnName="TongDoanhThu" />
+                <ScalarProperty Name="HoaDonID" ColumnName="HoaDonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="GYM2Model.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
